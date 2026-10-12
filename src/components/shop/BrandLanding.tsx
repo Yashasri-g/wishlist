@@ -125,7 +125,7 @@ export default function BrandLanding({ cat }: { cat: ClothingCategory }) {
           ))}
         </Row>
 
-        <Row title="Shop by fabric" eyebrow="Feel the difference" auto speed={0.45} itemClass="w-[104px] md:w-[140px]">
+        <Row title="Shop by fabric" eyebrow="Feel the difference" auto speed={0.45} itemClass="w-[114px] md:w-[150px]">
           {fab.map((f) => (
             <CircleTile key={f.label} href={shopHref({ cat, fab: f.label })} image={f.image} label={f.label} />
           ))}

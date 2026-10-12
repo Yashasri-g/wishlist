@@ -24,7 +24,7 @@ import {
 } from "@/data/taxonomy";
 
 const POSTER = "w-[58vw] sm:w-[36vw] md:w-[26vw] lg:w-[19vw] xl:w-[16.5vw]";
-const CIRCLE = "w-[104px] md:w-[140px]";
+const CIRCLE = "w-[114px] md:w-[150px]";
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
 
 export default function HomePage() {

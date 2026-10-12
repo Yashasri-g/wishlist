@@ -219,7 +219,7 @@ export default function Row({
               e.stopPropagation();
             }
           }}
-          className={`nf-track flex gap-3 overflow-x-auto scroll-pl-4 px-4 pb-4 sm:scroll-pl-8 sm:gap-4 sm:px-8 md:gap-5 ${auto ? "" : "snap-x snap-mandatory"} cursor-grab active:cursor-grabbing`}
+          className={`nf-track flex gap-3 overflow-x-auto scroll-pl-4 px-4 pt-4 pb-6 sm:scroll-pl-8 sm:gap-4 sm:px-8 sm:pt-5 sm:pb-7 md:gap-5 ${auto ? "" : "snap-x snap-mandatory"} cursor-grab active:cursor-grabbing`}
           tabIndex={0}
           role="list"
           aria-label={`${title} — scroll horizontally`}

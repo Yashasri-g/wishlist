@@ -39,16 +39,59 @@ export function PosterTile({
 }
 
 /** Round shortcut (Pantaloons-style category strip). */
-export function CircleTile({ href, image, label }: { href: string; image: string; label: string }) {
+export function CircleTile({
+  href,
+  image,
+  label,
+  active = false,
+}: {
+  href: string;
+  image: string;
+  label: string;
+  active?: boolean;
+}) {
   return (
-    <Link href={href} draggable={false} className="group flex flex-col items-center gap-3 text-center">
-      <span className="relative block h-[96px] w-[96px] md:h-[128px] md:w-[128px]">
-        <span className="absolute -inset-[5px] rounded-full border border-dashed border-raspberry/0 transition-all duration-700 group-hover:rotate-90 group-hover:border-raspberry/70" />
-        <span className="relative block h-full w-full overflow-hidden rounded-full bg-sand ring-1 ring-ink/10">
-          <Image src={image} alt="" fill sizes="128px" draggable={false} className="object-cover object-top transition-transform duration-700 group-hover:scale-110" />
+    <Link
+      href={href}
+      draggable={false}
+      className="group flex flex-col items-center pt-3.5 pb-1 px-1 text-center select-none"
+    >
+      <span
+        className={`relative block h-[96px] w-[96px] md:h-[128px] md:w-[128px] transition-all duration-300 ease-out ${
+          active
+            ? "-translate-y-2.5 drop-shadow-[0_10px_20px_rgba(176,18,63,0.22)]"
+            : "group-hover:-translate-y-2.5 group-focus-visible:-translate-y-2.5 group-hover:drop-shadow-[0_10px_20px_rgba(176,18,63,0.18)]"
+        }`}
+      >
+        <span
+          className={`pointer-events-none absolute -inset-[6px] md:-inset-[7px] rounded-full border border-dashed transition-all duration-700 ${
+            active
+              ? "rotate-90 border-raspberry opacity-100"
+              : "border-raspberry/0 opacity-0 group-hover:rotate-90 group-hover:border-raspberry/85 group-hover:opacity-100 group-focus-visible:border-raspberry group-focus-visible:opacity-100"
+          }`}
+        />
+        <span
+          className={`relative block h-full w-full overflow-hidden rounded-full bg-sand ring-1 transition-all duration-500 ${
+            active ? "ring-2 ring-raspberry/70" : "ring-ink/10 group-hover:ring-raspberry/40"
+          }`}
+        >
+          <Image
+            src={image}
+            alt=""
+            fill
+            sizes="128px"
+            draggable={false}
+            className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
+          />
         </span>
       </span>
-      <span className="text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors group-hover:text-raspberry md:text-xs">{label}</span>
+      <span
+        className={`mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors duration-300 md:text-xs ${
+          active ? "text-raspberry font-bold" : "group-hover:text-raspberry"
+        }`}
+      >
+        {label}
+      </span>
     </Link>
   );
 }
