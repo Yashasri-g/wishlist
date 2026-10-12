@@ -6,27 +6,43 @@ interface LogoProps {
   variant?: "default" | "premium" | "white";
   className?: string;
   size?: number;
+  width?: number;
+  height?: number;
 }
 
 /**
- * Uses the supplied brand logo (public/logo.png) unmodified.
- * The PNG has a white background, so on ivory it is blended with multiply,
- * and on dark surfaces it is placed on an ivory tile instead of being recoloured.
- * TODO: replace public/logo.png with a transparent SVG/high-res export.
+ * Brand logo for The Wishlist — Women's Clothing.
+ * Renders high-res, tightly-cropped logo with proper aspect ratio and mix-blend on ivory.
  */
-export default function Logo({ variant = "default", className = "", size = 72 }: LogoProps) {
+export default function Logo({
+  variant = "default",
+  className = "",
+  size,
+  width,
+  height,
+}: LogoProps) {
   const onDark = variant !== "default";
+
+  // Natural logo aspect ratio: 450 / 336 ≈ 1.339
+  const baseHeight = size ?? 68;
+  const finalHeight = height ?? baseHeight;
+  const finalWidth = width ?? Math.round(finalHeight * (450 / 336));
+
   return (
     <span
-      className={`inline-flex select-none ${onDark ? "bg-white p-1" : ""} ${className}`}
+      className={`inline-flex items-center select-none transition-transform duration-300 hover:scale-[1.02] ${
+        onDark ? "bg-white p-1.5 rounded-sm" : ""
+      } ${className}`}
     >
       <Image
         src="/logo.png"
         alt="The Wishlist — Women's Clothing"
-        width={size}
-        height={size}
+        width={finalWidth}
+        height={finalHeight}
         priority
-        className={onDark ? "" : "mix-blend-multiply"}
+        className={`h-auto w-auto max-h-full object-contain ${
+          onDark ? "" : "mix-blend-multiply"
+        }`}
       />
     </span>
   );

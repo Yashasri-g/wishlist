@@ -254,7 +254,7 @@ export default function ShopClient() {
       </div>
 
       {/* toolbar */}
-      <div className="sticky top-[104px] z-30 -mx-4 flex flex-wrap items-center justify-between gap-3 border-y border-ink/10 bg-ivory/95 px-4 py-3 backdrop-blur sm:-mx-8 sm:px-8 max-lg:top-[68px]">
+      <div className="sticky top-[104px] z-30 -mx-4 flex flex-wrap items-center justify-between gap-3 border-y border-ink/10 bg-ivory/95 px-4 py-3 backdrop-blur sm:-mx-8 sm:px-8 max-lg:top-[72px]">
         <button type="button" onClick={() => setMobileFilters(true)} className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] lg:hidden">
           <SlidersHorizontal className="h-4 w-4" /> Filters {activeChips.length > 0 && <span className="rounded-full bg-raspberry px-1.5 text-white">{activeChips.length}</span>}
         </button>

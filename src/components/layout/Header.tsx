@@ -167,19 +167,19 @@ export default function Header() {
         onMouseLeave={scheduleClose}
       >
         {/* row 1 */}
-        <div className="mx-auto grid h-[68px] max-w-[1800px] grid-cols-[auto_1fr_auto] items-center gap-3 px-3 sm:px-8 md:grid-cols-[1fr_minmax(320px,560px)_1fr] md:gap-8">
+        <div className="mx-auto grid h-[72px] max-w-[1800px] grid-cols-[auto_1fr_auto] items-center gap-3 px-3 sm:h-[78px] sm:px-8 md:grid-cols-[1fr_minmax(320px,560px)_1fr] md:gap-8 lg:h-[88px]">
           <div className="flex items-center">
             <button type="button" onClick={() => setDrawer(true)} className="-ml-2 flex h-11 w-11 items-center justify-center lg:hidden" aria-label="Open menu">
               <Menu className="h-6 w-6" />
             </button>
             <Link href="/" aria-label="The Wishlist — home" className="hidden shrink-0 lg:block" onMouseEnter={close}>
-              <Logo size={60} />
+              <Logo height={76} className="h-[68px] lg:h-[78px] w-auto max-w-[190px]" />
             </Link>
           </div>
 
           <div className="flex items-center justify-center gap-3">
             <Link href="/" aria-label="The Wishlist — home" className="lg:hidden">
-              <Logo size={52} />
+              <Logo height={60} className="h-[52px] sm:h-[58px] w-auto max-w-[140px]" />
             </Link>
             <button
               type="button"
@@ -342,7 +342,7 @@ export default function Header() {
               className="absolute inset-y-0 left-0 flex w-[88%] max-w-[420px] flex-col overflow-y-auto bg-ivory"
             >
               <div className="flex items-center justify-between border-b border-ink/10 px-4 py-3">
-                <Logo size={52} />
+                <Logo height={58} className="h-[52px] w-auto max-w-[140px]" />
                 <button type="button" onClick={() => setDrawer(false)} className="flex h-11 w-11 items-center justify-center" aria-label="Close menu">
                   <X className="h-6 w-6" />
                 </button>

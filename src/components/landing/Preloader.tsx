@@ -80,7 +80,7 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
     >
       <div className="pl-content flex flex-col items-center">
         <div className="pl-logo">
-          <Image src="/logo.png" alt="" width={150} height={150} priority />
+          <Image src="/logo.png" alt="" width={180} height={134} priority className="h-auto w-auto max-h-[140px] object-contain" />
         </div>
         <div className="mt-8 w-56 h-px bg-ink/15 overflow-hidden">
           <div ref={bar} className="h-full bg-raspberry origin-left scale-x-0" />
