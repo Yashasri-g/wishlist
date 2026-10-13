@@ -5,13 +5,13 @@ import Row from "@/components/shop/Row";
 import ProductTile from "@/components/shop/ProductTile";
 import { CircleTile, PosterTile, WideTile } from "@/components/shop/Tiles";
 import SplitBanners from "@/components/shop/SplitBanners";
+import CuratedLooksSection from "@/components/home/CuratedLooksSection";
 import ParallaxBanner from "@/components/shop/ParallaxBanner";
 import RecentRow from "@/components/shop/RecentRow";
 import Marquee from "@/components/landing/Marquee";
 import SocialStrip from "@/components/landing/SocialStrip";
 import { img, PICK } from "@/data/images";
 import {
-  CATALOG,
   FABRICS,
   OCCASIONS,
   PRICE_BANDS,
@@ -19,7 +19,6 @@ import {
   byCollection,
   countFor,
   filterProducts,
-  newestFirst,
   shopHref,
 } from "@/data/taxonomy";
 
@@ -28,7 +27,6 @@ const CIRCLE = "w-[114px] md:w-[150px]";
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
 
 export default function HomePage() {
-  const fresh = newestFirst(CATALOG).slice(0, 12);
   const top10 = [...byCollection("trending"), ...byCollection("best")].filter((p, i, a) => a.findIndex((x) => x.id === p.id) === i).slice(0, 10);
   const wedding = filterProducts({ occ: "Wedding" }).slice(0, 12);
   const blazers = filterProducts({ sub: "Blazers & Suits" });
@@ -54,11 +52,8 @@ export default function HomePage() {
           ))}
         </Row>
 
-        <Row title="New arrivals" eyebrow="Just landed" href={shopHref({ col: "new" })}>
-          {fresh.map((p, i) => (
-            <ProductTile key={p.id} product={p} priority={i < 4} />
-          ))}
-        </Row>
+        {/* Pantaloons-inspired Curated Looks For You (New Arrivals) */}
+        <CuratedLooksSection />
 
         <SplitBanners />
 
