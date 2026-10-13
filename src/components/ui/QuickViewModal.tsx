@@ -4,14 +4,17 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useShop } from "@/context/ShopContext";
-import { X, Star, Heart, ShoppingBag, Check, ShieldCheck, Truck } from "lucide-react";
+import { X, Heart, ShoppingBag } from "lucide-react";
+import { Product } from "@/types";
 
-export default function QuickViewModal() {
-  const { quickViewProduct, setQuickViewProduct, addToCart, toggleWishlist, isWishlisted } = useShop();
-
-  if (!quickViewProduct) return null;
-
-  const product = quickViewProduct;
+function QuickViewContent({
+  product,
+  onClose,
+}: {
+  product: Product;
+  onClose: () => void;
+}) {
+  const { addToCart, toggleWishlist, isWishlisted } = useShop();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0] || "M");
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
@@ -24,7 +27,7 @@ export default function QuickViewModal() {
       <div className="relative w-full max-w-4xl bg-[#FAF8F5] dark:bg-[#121212] text-[#121212] dark:text-white rounded-sm overflow-hidden shadow-none border border-[#B8975A]/30 max-h-[90vh] flex flex-col md:flex-row">
         {/* Close Button */}
         <button
-          onClick={() => setQuickViewProduct(null)}
+          onClick={onClose}
           className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/80 dark:bg-black/80 hover:bg-[#B8975A] hover:text-black transition-colors"
           aria-label="Close modal"
         >
@@ -173,7 +176,7 @@ export default function QuickViewModal() {
               <button
                 onClick={() => {
                   addToCart(product, selectedSize, selectedColor, quantity);
-                  setQuickViewProduct(null);
+                  onClose();
                 }}
                 className="flex-1 bg-[#121212] dark:bg-white text-white dark:text-black font-semibold text-xs uppercase tracking-widest py-3.5 px-4 rounded-sm flex items-center justify-center gap-2 hover:bg-[#B8975A] dark:hover:bg-[#B8975A] hover:text-black transition-colors shadow-none"
               >
@@ -196,7 +199,7 @@ export default function QuickViewModal() {
 
             <Link
               href={`/product/${product.id}`}
-              onClick={() => setQuickViewProduct(null)}
+              onClick={onClose}
               className="block text-center text-xs uppercase tracking-widest font-semibold text-[#888] hover:text-[#B8975A] transition-colors py-1"
             >
               View Full Product Details →
@@ -205,5 +208,18 @@ export default function QuickViewModal() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function QuickViewModal() {
+  const { quickViewProduct, setQuickViewProduct } = useShop();
+
+  if (!quickViewProduct) return null;
+
+  return (
+    <QuickViewContent
+      product={quickViewProduct}
+      onClose={() => setQuickViewProduct(null)}
+    />
   );
 }
